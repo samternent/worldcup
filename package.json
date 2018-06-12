@@ -4,7 +4,7 @@
   "description": "CLI for World Cup 2018 Russia",
   "main": "index.js",
   "bin": {
-    "fixtures": "bin/fixtures.js"
+    "worldcup": "bin/index.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.18.0",
-    "chalk": "^2.4.1"
+    "chalk": "^2.4.1",
+    "commander": "^2.15.1"
   }
 }
