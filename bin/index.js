@@ -4,6 +4,8 @@ const { green, white } = require('../src/utils/log');
 const getFixtures = require('../src/fixtures');
 const getGroups = require('../src/groups');
 
+const Table = require('cli-table');
+
 // Options
 program
     .option('-f, --fixtures', 'fixtures')
@@ -24,7 +26,13 @@ program
     Object.keys(groups)
         .filter((table) => !program.group || program.group.toUpperCase() === table)
         .forEach((table) => {
+            var groupTable = new Table({
+                head: ['Rank', 'Team',],
+                colWidths: [10, 100]
+            });
             white(`Group ${table}`)
-            groups[table].forEach(({ team }) => green(`${team}`));
+            white(`---`)
+            groupTable.push(...groups[table].sort((a, b) => a.rank + b.rank).map(({team, rank}) => [rank, team]));
+            white(groupTable.toString());
         });
 })();
