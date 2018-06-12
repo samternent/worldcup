@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 const program = require('commander');
-const { green } = require('../src/utils/log');
+const { green, white } = require('../src/utils/log');
 const getFixtures = require('../src/fixtures');
 const getGroups = require('../src/groups');
 
@@ -10,6 +10,7 @@ program
     .option('-g, --group [value]', 'group')
     .option('-G, --groups [value]', 'groups')
     .option('-t, --team [value]', 'team')
+    .option('-p, --players [value]', 'team')
     .parse(process.argv);
 
 // Runner
@@ -19,9 +20,11 @@ program
         green(`${fixture.homeTeamName} vs ${fixture.awayTeamName}`));
 
 
-    const groups = program.groups ? await getGroups() : {};
-    // console.log(groups);
-    Object.values(groups).forEach((table) =>
-        table.forEach(({ group, team }) => green(`${group}  ${team}`)))
-
+    const groups = program.groups || program.group ? await getGroups() : {};
+    Object.keys(groups)
+        .filter((table) => !program.group || program.group.toUpperCase() === table)
+        .forEach((table) => {
+            white(`Group ${table}`)
+            groups[table].forEach(({ team }) => green(`${team}`));
+        });
 })();
