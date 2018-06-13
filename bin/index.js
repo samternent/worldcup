@@ -42,7 +42,7 @@ program
                 team.team.toLowerCase() === program.team.toLowerCase());
             return hasTeam.length > 0 ? group : null;
         })
-        : groups;
+        : Object.values(groups).map((group) => group);
     
     filteredGroups
         .filter((table) => !program.group || program.group.toUpperCase() === table)
