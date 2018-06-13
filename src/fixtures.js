@@ -12,9 +12,7 @@ module.exports = async ({ timeFrame, team })  => {
     try {
         const { status, data } = await 
             api.get(url, {
-                params: {
-                    timeFrame: 'n5',
-                },
+                params: { timeFrame },
             });
 
         if (status != 200) return;
