@@ -1,7 +1,7 @@
 # worldcup
 
 ```bash
-npm instal worldcup-2018 -g
+npm install worldcup-2018 -g
 ```
 
 ```bash
