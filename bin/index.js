@@ -45,7 +45,7 @@ program
         : Object.values(groups).map((group) => group);
     
     filteredGroups
-        .filter((table) => !program.group || program.group.toUpperCase() === table)
+        .filter((table) => !table || !program.group || program.group.toUpperCase() === table[0].group)
         .forEach((table) => {
             if (!table) return;
 
