@@ -9,8 +9,8 @@ const Table = require('cli-table');
 // Options
 program
     .option('-f, --fixtures', 'fixtures')
+    .option('-G, --groups', 'groups')
     .option('-g, --group [value]', 'group')
-    .option('-G, --groups [value]', 'groups')
     .option('-t, --team [value]', 'team')
     .option('-p, --players [value]', 'team')
     .parse(process.argv);
