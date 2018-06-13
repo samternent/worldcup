@@ -27,12 +27,15 @@ program
         .filter((table) => !program.group || program.group.toUpperCase() === table)
         .forEach((table) => {
             var groupTable = new Table({
-                head: ['Rank', 'Team',],
-                colWidths: [10, 100]
+                head: ['Team', 'P', 'GF', 'GA', 'GD', 'P'],
+                colWidths: [15, 5, 5, 5, 5, 5]
             });
+            white(`---------------`)
             white(`Group ${table}`)
-            white(`---`)
-            groupTable.push(...groups[table].sort((a, b) => a.rank + b.rank).map(({team, rank}) => [rank, team]));
+            white(`---------------`)
+            groupTable.push(...groups[table].sort((a, b) => a.rank + b.rank).map(({
+                team, points, playedGames, goals, goalsAgainst, goalDifference
+            }) => [team, playedGames, goals, goalsAgainst, goalDifference, points]));
             white(groupTable.toString());
         });
 })();
